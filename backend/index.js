@@ -3,9 +3,11 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = "mahesh";
 const { typeSchema } = require('./type');  
-const cors=require('cors');
+
+const cors = require('cors');
+
 app.use(express.json());
-app.use(cors());
+app.use(cors())
 app.post('/signup', (req, res) => {
     const data =typeSchema.safeParse(req.body);
     if(!data.success) {
@@ -20,27 +22,20 @@ app.post('/signup', (req, res) => {
 });
 
 function authorization(req,res,next) {
-        const token = req.headers['authorization']?.split(' ')[0];
-        if(!token) {
-            res.status(404).json({message:"Please signup"})
-        }
-        try{
-            jwt.verify(token,SECRET_KEY,(err,decoded)=>{
-                if(err) {
-                    return res.status(401).json({ message: 'Invalid token' });
-                }
-                req.user=decoded;
-                next();
-            });
-            
-        }catch(error) {
-            res.status(500).json({"error":error})
-        }
-        
+    const token = req.headers['authorization'];
+  if (!token) {
+    return res.status(401).json({ message: 'No token provided' });
+  }
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ message: 'Invalid token' });
+    }
+    req.user = decoded; // Store decoded user information
+    next();
+  });
 }
 
 app.get('/signin', authorization,(req, res) => {
-    // now user now signin 
     res.status(200).json({
         username: req.user.data.username,
         password: req.user.data.password 
