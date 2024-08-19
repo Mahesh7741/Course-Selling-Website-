@@ -3,9 +3,9 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const SECRET_KEY = "mahesh";
 const { typeSchema } = require('./type');  
-
+const cors=require('cors');
 app.use(express.json());
-
+app.use(cors());
 app.post('/signup', (req, res) => {
     const data =typeSchema.safeParse(req.body);
     if(!data.success) {
