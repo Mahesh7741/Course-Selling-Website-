@@ -21,6 +21,7 @@ function Signup() {
     } else {
       const result = await response.json();
       localStorage.setItem("token", result.token);
+      window.location.href="/homepage";
     }
   }
   return (
