@@ -1,5 +1,7 @@
+import { useState } from "react";
 
 function Signin() {
+    const [username, setUserName]=useState("")
     return (
         <div style={{
             display: "flex",
@@ -36,7 +38,7 @@ function Signin() {
                             border: "1px solid #ccc",
                             borderRadius: "4px",
                             boxSizing: "border-box"
-                        }} />
+                        }} onClick={(e)=>{}} />
                     </div>
                     <div style={{
                         marginBottom: "15px"

@@ -46,6 +46,8 @@ function AppBar() {
             transition: "background-color 0.3s, color 0.3s",
             height: "40px", // Consistent button height
             lineHeight: "20px", // Vertically align text
+          }} onClick={()=>{
+            window.location.href="/signin"
           }}
         >
           Sign In
@@ -62,6 +64,8 @@ function AppBar() {
             transition: "background-color 0.3s, color 0.3s",
             height: "40px", // Consistent button height
             lineHeight: "20px", // Vertically align text
+          }} onClick={()=>{
+            window.location.href="/signup"
           }}
         >
           Sign Up

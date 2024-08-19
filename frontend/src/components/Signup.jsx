@@ -130,7 +130,7 @@ function Signup() {
               fontSize: "16px",
               cursor: "pointer",
               transition: "background-color 0.3s",
-            }}
+            }} 
           >
             Sign Up
           </button>
